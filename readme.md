@@ -9,6 +9,11 @@ V3 works like this:
 - Our serverside html parser processes the modified document and looks for attribute keywords relevant to that page. For example, on sign in
   it looks for tg-attribute=signup-form. It then performs logical actions based on the attribute found.
 
+## Prerequisites
+
+- For any of the content on this page to work, page overrides must be enabled for the platform.
+- Click the wrench icon, navigate to platform settings, click integrations, navigate to the Page overrides integration, and enable it.
+
 ## Sign In
 
 - On sign in, fields must be formatted as follows:
@@ -24,6 +29,26 @@ V3 works like this:
 - The sign up form needs to have the custom attribute "tg-attribute" set to "signup-form"
 - The document parser removes the old form element and replaces it with the authenticated Tangram one
 - There can be one sign up page per user role
+
+## Onboarding Flows
+
+- Each role can have its own onboarding flow
+- Once set up, the onboarding flow will be triggered when a user signs up for that role. After onboarding, the user is directed to /users/#{user_id}/edit
+- Navigate to the role modification panel for the role you want to integrate the onboarding flow for
+- Add a new step with the url set to the source url of the html you want to use for the onboarding page. Add a label so it can be identified later
+- In your html file, create a form element and set its custom attribute "tg-attribute" to "user-form"
+- For each input in the form, set the name of the field to user[{variable_name}]
+  - For example, if you want a field that modifies display name, set the name of the field to user[display_name]
+
+## Edit profile page (/users/{user_id}/edit)
+
+- The edit profile page allows users to edit their profile information
+- After completing integration, any user directed to the edit profile page will see your custom page instead of the default Tangram one
+- In the role settings page, navigate to the "Page Overrides" tab for the role you want to modify and set the "Edit Profile Source URL" to the source url for your custom page.
+- From here, the steps are the same as onboarding flows:
+  - In your html file, create a form element and set its custom attribute "tg-attribute" to "user-form"
+  - For each input in the form, set the name of the field to user[{variable_name}]
+    - For example, if you want a field that modifies display name, set the name of the field to user[display_name]
 
 ## Navbar
 
