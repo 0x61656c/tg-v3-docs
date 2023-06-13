@@ -113,4 +113,5 @@ Asks for credit card
     - id=payment-form
     - internal div with its id=payment-element
     - internal div with its id=error-message
-      -submit button with id=submit
+    - submit button with id=submit
+      - note that this button must be a button type element. Webflow's form submission element will not work here, as on the backend it creates an input with type = 'button' you need to use the 'Button' element
